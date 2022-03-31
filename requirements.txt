@@ -1,7 +1,10 @@
-asgiref @ file:///tmp/build/80754af9/asgiref_1625643473416/work
+asgiref==3.4.1
 certifi==2020.6.20
-Django @ file:///tmp/build/80754af9/django_1625585912945/work
-psycopg2 @ file:///Users/builder/ci_310/psycopg2_1642535040511/work
+Django==3.2.5
+pip==21.2.4
+psycopg2==2.8.6
 pytz==2021.3
-sqlparse @ file:///tmp/build/80754af9/sqlparse_1602184451250/work
-typing_extensions @ file:///opt/conda/conda-bld/typing_extensions_1647553014482/work
+setuptools==58.0.4
+sqlparse==0.4.1
+typing_extensions==4.1.1
+wheel==0.37.1
