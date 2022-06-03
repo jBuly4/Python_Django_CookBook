@@ -1,6 +1,3 @@
-import pytest
-
-
 def test_db_recipes(create_recipes):
     """Check recipes and their fields."""
     assert create_recipes.all().count() == 2
