@@ -1,23 +1,20 @@
 import pytest
-from cookbook.models import Ingredients, Pictures, Recipe, Tags
 
 
-@pytest.mark.django_db
-def test_creation_db():
-    """Check amount of created objects using admin site."""
-    ingredients_lst = [
-        Ingredients(title="bread", description="bread"),
-        Ingredients(title="onion", description="onion"),
-    ]
-    Ingredients.objects.bulk_create(ingredients_lst)
+def test_db_recipes(create_recipes):
+    """Check recipes and their fields."""
+    assert create_recipes.all().count() == 2
+    assert create_recipes.get(title="Test recipe 1").title == "Test recipe 1"
+    assert create_recipes.get(title="Test recipe 2").title == "Test recipe 2"
+    assert create_recipes.get(title="Test recipe 1").description == "tratata"
+    assert create_recipes.get(title="Test recipe 2").description == "trututu"
+    assert create_recipes.get(title="Test recipe 1").instruction == "trt1"
+    assert create_recipes.get(title="Test recipe 2").instruction == "trt212"
+    assert create_recipes.get(title="Test recipe 1").cook_time == 20
+    assert create_recipes.get(title="Test recipe 2").cook_time == 15
+    assert len(create_recipes.filter(tags__title="tag1")) == 1
+    assert len(create_recipes.filter(tags__title="tag2")) == 1
+    assert create_recipes.filter(tags__title="tag1")[0].title == "Test recipe 1"
+    assert create_recipes.filter(tags__title="tag2")[0].title == "Test recipe 2"
 
-    Tags.objects.create(title="tag1")
 
-    recipes_lst = [
-        Recipe(title="Test recipe 1", description="tratata", instruction="trt", cook_time=20)
-    ]
-
-    Recipe.objects.bulk_create(recipes_lst)
-    Recipe.objects.get(title="Test recipe 1").tags.add(Tags.objects.get(title='tag1'))
-    recipe_count = Recipe.objects.all().count()
-    assert recipe_count == 1
