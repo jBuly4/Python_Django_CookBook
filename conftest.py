@@ -28,3 +28,37 @@ def create_recipes(db):
     Recipe.objects.get(title="Test recipe 2").ingredients.add(Ingredients.objects.get(title='onion'))
 
     return Recipe.objects  # if we return object then we don't need @pytest.mark.django_db before test func
+
+
+@pytest.fixture()
+def create_recipe_factory(db):
+    """Fixture factory to create 1 recipe with ingredients and tags."""
+    def create_recipe(
+            recipe_title: str,
+            recipe_description: str,
+            recipe_instruction: str,
+            recipe_cook_time: int,
+            ingredients_lst: list = [],
+            tags_lst: list = []
+    ):
+
+        Recipe.objects.create(
+            title=recipe_title, description=recipe_description,
+            instruction=recipe_instruction, cook_time=recipe_cook_time
+            )
+
+        for ingredient in ingredients_lst:
+            Ingredients.objects.create(title=ingredient.title, description=ingredient.description)
+            Recipe.objects.get(title=recipe_title).ingredients.add(Ingredients.objects.get(title=ingredient.title))
+
+        for tag in tags_lst:
+            Tags.objects.create(title=tag.title)
+            Recipe.objects.get(title=recipe_title).tags.add(Tags.objects.get(title=tag.title))
+
+        return Recipe.objects
+    return create_recipe
+
+
+@pytest.fixture()
+def new_recipe(db, create_recipe_factory):
+    return create_recipe_factory()
