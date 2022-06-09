@@ -2,25 +2,25 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Cookbook Main</title>
+	<title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-	<h1>COOK BOOK MAIN</h1>
-	{% block header %}
 	<header>
-		<h1> future header </h1>
+		{% block header %}
+		<h2>Place for header</h2>
+		{% endblock %}
 	</header>
-	{% endblock %}
 
-	{% block body %}
-	<h1>Place for body</h1>
-	{% endblock %}
+	<div id="body">
+		{% block body %}
+		<h1>Place for body</h1>
+		{% endblock %}
+	</div>
 
-	{% block footer %}
 	<footer>
+		{% block footer %}
 		<h1> future footer</h1>
+		{% endblock %}
 	</footer>
-	{% endblock %}
-
 </body>
 </html>
