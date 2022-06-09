@@ -1,6 +1,9 @@
 from django.urls import path, include
-from .views import index
+import views
+
+app_name = 'cookbook'
 
 urlpatterns = [
-    path('', index, name='index'),
+    path('', views.recipe_lst, name='recipe_lst'),
+    path('<str:title>/', views.recipe_detail, name='recipe_detail'),  # Django3 by example p29
 ]
