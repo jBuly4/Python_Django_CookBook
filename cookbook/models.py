@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse  # Django3 by example p30
 
 # Create your models here.
 
@@ -39,6 +40,12 @@ class Recipe(models.Model):
     cook_time = models.PositiveIntegerField(default=0)
     created_at = models.DateField(auto_now_add=True)
 
+    def get_absolute_url(self):
+        return reverse(
+                'recipe_detail',
+                args=[self.title, ]  # Django3 by example p30
+        )
+
     def __str__(self):
         return self.title
 
@@ -49,7 +56,7 @@ class Recipe(models.Model):
 class Pictures(models.Model):
     title = models.CharField(max_length=150)
     image = models.ImageField(upload_to='images/')
-    recipie = models.ForeignKey(
+    recipe = models.ForeignKey(
             Recipe,
             related_name='pictures',
             on_delete=models.CASCADE
