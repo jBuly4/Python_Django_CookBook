@@ -11,7 +11,7 @@ from .models import Recipe, Ingredients, Tags
 def recipe_lst(request):
     recipes = Recipe.objects.all()  # you can define in models.py your own Model manager instead of objects
     return render(request,
-                  'recipes.html',
+                  'recipes_lst.html',
                   {'recipes': recipes})
 
 

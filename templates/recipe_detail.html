@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ recipe.title }}{% endblock %}
+
+{% block body %}
+	<h1>{{ recipe.title }}</h1>
+	<p class="tags">
+			<h3>{{ recipe.tags_set.all }}</h3>
+	</p>
+
+	<p class="description">
+		{{ recipe.description }}
+	</p>
+
+	<p class="cooktime"><h3>Cook time is {{ recipe.cook_time }}</h3></p>
+
+	<p class="ingredients">
+		{% for ingredient in recipe.ingredients_set.all %}
+			<h3>{{ recipe.ingredients }}</h3>
+		{% endfor %}
+	</p>
+
+	<p class="instruction">
+		{{ recipe.instruction }}
+	</p>
+
+{% endblock %}

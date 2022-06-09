@@ -42,7 +42,7 @@ class Recipe(models.Model):
 
     def get_absolute_url(self):
         return reverse(
-                'recipe_detail',
+                'cookbook:recipe_detail',
                 args=[self.title, ]  # Django3 by example p30
         )
 
