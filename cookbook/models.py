@@ -8,6 +8,12 @@ class Ingredients(models.Model):
     title = models.CharField(max_length=150)
     description = models.CharField(max_length=300)
 
+    def get_absolute_url(self):
+        return reverse(
+                'cookbook:ingredient_detail',
+                args=[self.title, ]  # Django3 by example p30
+        )
+
     def __str__(self):
         return self.title
 
@@ -17,6 +23,12 @@ class Ingredients(models.Model):
 
 class Tags(models.Model):
     title = models.CharField(max_length=150)
+
+    def get_absolute_url(self):
+        return reverse(
+                'cookbook:tags_page',
+                args=[self.title, ]  # Django3 by example p30
+        )
 
     def __str__(self):
         return self.title
@@ -46,11 +58,14 @@ class Recipe(models.Model):
                 args=[self.title, ]  # Django3 by example p30
         )
 
+    def get_pictures(self):
+        return self.pictures.all()
+
     def __str__(self):
         return self.title
 
-    def get_pictures(self):
-        return self.pictures.all()
+    class Meta:
+        ordering = ('title',)
 
 
 class Pictures(models.Model):

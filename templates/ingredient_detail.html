@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ ingredient.title }}{% endblock %}
+
+{% block body %}
+	<h1>{{ ingredient.title }}</h1>
+	<p>
+		{% for recipe in ingredient.recipe.all %}
+			<a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a>
+		{% endfor %}
+	</p>
+
+	<p class="description">
+		<h3>Description</h3>
+		{{ ingredient.description | linebreaks }}
+	</p>
+
+{% endblock %}

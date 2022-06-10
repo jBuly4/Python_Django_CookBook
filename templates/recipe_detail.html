@@ -6,7 +6,7 @@
 	<h1>{{ recipe.title }}</h1>
 	<p class="tags">
 		{% for tag in recipe.tags.all %}
-			{{ tag.title }}
+		<a href="{{ tag.get_absolute_url }}">{{ tag.title }}</a>
 		{% endfor %}
 	</p>
 
@@ -19,7 +19,7 @@
 	<p class="ingredients">
 		<h5> List of ingredients </h5>
 		{% for ingredient in recipe.ingredients.all %}
-			{{ ingredient.title }}
+			<a href="{{ ingredient.get_absolute_url }}">{{ ingredient.title }}</a>
 		{% endfor %}
 	</p>
 

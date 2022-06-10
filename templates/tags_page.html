@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ tags.title }}{% endblock %}
+
+{% block body %}
+<h1>{{ tags.title }} is used in further recipes:</h1>
+<p>
+		{% for recipe in tags.recipe.all %}
+		<ul>
+			<li><a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a> </li>
+		</ul>
+
+		{% endfor %}
+</p>
+
+{% endblock %}
