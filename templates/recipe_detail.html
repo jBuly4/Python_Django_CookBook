@@ -5,23 +5,27 @@
 {% block body %}
 	<h1>{{ recipe.title }}</h1>
 	<p class="tags">
-			<h3>{{ recipe.tags_set.all }}</h3>
+		{% for tag in recipe.tags.all %}
+			{{ tag.title }}
+		{% endfor %}
 	</p>
 
 	<p class="description">
-		{{ recipe.description }}
+		{{ recipe.description | linebreaks }}
 	</p>
 
 	<p class="cooktime"><h3>Cook time is {{ recipe.cook_time }}</h3></p>
 
 	<p class="ingredients">
-		{% for ingredient in recipe.ingredients_set.all %}
-			<h3>{{ recipe.ingredients }}</h3>
+		<h5> List of ingredients </h5>
+		{% for ingredient in recipe.ingredients.all %}
+			{{ ingredient.title }}
 		{% endfor %}
 	</p>
 
 	<p class="instruction">
-		{{ recipe.instruction }}
+		<h4>Instruction</h4>
+		{{ recipe.instruction | linebreaks }}
 	</p>
 
 {% endblock %}
