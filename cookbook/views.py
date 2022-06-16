@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Recipe, Ingredients, Tags
+from .models import Recipe, Ingredients, Tags, Pictures
 
 # Create your views here.
 

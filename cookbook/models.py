@@ -70,7 +70,7 @@ class Recipe(models.Model):
 
 class Pictures(models.Model):
     title = models.CharField(max_length=150)
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='static/cookbook/images/')
     recipe = models.ForeignKey(
             Recipe,
             related_name='pictures',

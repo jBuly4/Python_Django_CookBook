@@ -10,6 +10,12 @@
 		{% endfor %}
 	</p>
 
+	<div class="image">
+		{% for pic in recipe.pictures.all %}
+		<img src="/{{ pic.image }}">
+		{% endfor %}
+	</div>
+
 	<p class="description">
 		{{ recipe.description | linebreaks }}
 	</p>
