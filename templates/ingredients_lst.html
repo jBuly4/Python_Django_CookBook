@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Ingredients{% endblock %}
+
+{% block body %}
+	<h1>Book of recipes</h1>
+	{% for ingredient in ingredients %}
+		<h2>
+			<a href="{{ ingredient.get_absolute_url }}"> {{ ingredient.title }} </a>
+		</h2>
+	{% endfor %}
+{% endblock %}

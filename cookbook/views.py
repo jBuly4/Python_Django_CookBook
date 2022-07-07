@@ -21,6 +21,13 @@ def recipe_detail(request, title):
     return render(request, 'recipe_detail.html', {'recipe': recipe})  # Django3 by example p28
 
 
+def ingredient_lst(request):
+    ingredients = Ingredients.objects.all()
+    return render(request,
+                  'ingredients_lst.html',
+                  {'ingredients': ingredients})
+
+
 def ingredient_detail(request, title):
     ingredient = get_object_or_404(Ingredients, title=title)
 
@@ -31,3 +38,10 @@ def tags_view(request, title):
     tags = get_object_or_404(Tags, title=title)
 
     return render(request, 'tags_page.html', {'tags': tags})
+
+
+def tag_lst(request):
+    tags = Tags.objects.all()
+    return render(request,
+                  'tags_lst.html',
+                  {'tags': tags})
