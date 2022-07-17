@@ -3,10 +3,15 @@
 {% block title %}Recipes{% endblock %}
 
 {% block body %}
-	<h1>Book of recipes</h1>
+	<div class="title shadow-lg p-3 mb-5 bg-body rounded text-muted" style="text-align: center">
+		<h1> Book of recipes </h1>
+	</div>
+
 	{% for recipe in recipes %}
-		<h2>
-			<a href="{{ recipe.get_absolute_url }}"> {{ recipe.title }} </a>
-		</h2>
+		<div class="list-group">
+			<a class="list-group-item list-group-item-action not-active shadow-sm p-3 mb-3 rounded"
+			   aria-current="false"
+			   href="{{ recipe.get_absolute_url }}" style="text-align: center"> {{ recipe.title }} </a>
+		</div>
 	{% endfor %}
 {% endblock %}
