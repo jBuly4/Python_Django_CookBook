@@ -3,35 +3,68 @@
 {% block title %}{{ recipe.title }}{% endblock %}
 
 {% block body %}
-	<h1>{{ recipe.title }}</h1>
-	<p class="tags">
-		{% for tag in recipe.tags.all %}
-		<a href="{{ tag.get_absolute_url }}">{{ tag.title }}</a>
-		{% endfor %}
-	</p>
+	<div class="title shadow-lg p-3 mb-5 bg-body rounded text-muted" style="text-align: center">
+		<h1>{{ recipe.title }}</h1>
+	</div>
+	<div class="text-sm-center text-uppercase fs-5 fw-lighter">
+		<p class="tags">
+			{% for tag in recipe.tags.all %}
+				<a class="text-decoration-none" href="{{ tag.get_absolute_url }}">{{ tag.title }}</a>
+			{% endfor %}
+		</p>
 
-	<div class="image">
-		{% for pic in recipe.pictures.all %}
-		<img src="/{{ pic.image }}">
-		{% endfor %}
 	</div>
 
-	<p class="description">
+	<div class="image shadow p-3 mb-5">
+		<div id="carouselControls" class="carousel slide" data-bs-ride="carousel">
+			<div class="carousel-inner">
+				{% for pic in recipe.pictures.all %}
+				<div class="carousel-item active">
+					<img class="d-block w-100 bg-body rounded" src="/{{ pic.image }}">
+				</div>
+				{% endfor %}
+			</div>
+			<button class="carousel-control-prev" type="button" data-bs-target="#carouselControls"
+			        data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselControls"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+		</div>
+	</div>
+
+	<div class="p-3 mb-5 text-center text-capitalized">
+		<p class="description">
 		{{ recipe.description | linebreaks }}
-	</p>
+		</p>
+	</div>
 
-	<p class="cooktime"><h3>Cook time is {{ recipe.cook_time }}</h3></p>
+	<div class="p-3 mb-5 text-center text-capitalized">
+		<p class="cooktime"><h4>Cook time is {{ recipe.cook_time }} minutes </h4></p>
+	</div>
 
-	<p class="ingredients">
-		<h5> List of ingredients </h5>
-		{% for ingredient in recipe.ingredients.all %}
-			<a href="{{ ingredient.get_absolute_url }}">{{ ingredient.title }}</a>
-		{% endfor %}
-	</p>
+	<div class="p-3 mb-5 text-center text-capitalized">
+			<h5> List of ingredients </h5>
+			<div class="text-sm-center text-uppercase fs-5 fw-lighter">
+				{% for ingredient in recipe.ingredients.all %}
+					<p class="ingredients">
+						<a class="text-decoration-none" href="{{ ingredient.get_absolute_url }}">
+							{{ ingredient.title }}</a>
+					</p>
+				{% endfor %}
+			</div>
+	</div>
 
-	<p class="instruction">
-		<h4>Instruction</h4>
-		{{ recipe.instruction | linebreaks }}
-	</p>
+
+	<div class=" p-3 mb-5 text-center text-capitalized">
+		<p class="instruction">
+			<h4>Instruction</h4>
+			{{ recipe.instruction | linebreaks }}
+		</p>
+	</div>
 
 {% endblock %}

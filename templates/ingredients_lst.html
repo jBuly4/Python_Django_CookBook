@@ -3,10 +3,15 @@
 {% block title %}Ingredients{% endblock %}
 
 {% block body %}
-	<h1>Book of recipes</h1>
+	<div class="title shadow-lg p-3 mb-5 bg-body rounded text-muted" style="text-align: center">
+		<h1> Book of recipes </h1>
+	</div>
+
 	{% for ingredient in ingredients %}
-		<h2>
-			<a href="{{ ingredient.get_absolute_url }}"> {{ ingredient.title }} </a>
-		</h2>
+		<div class="list-group">
+			<a class="list-group-item list-group-item-action not-active shadow-sm p-3 mb-2 rounded text-center
+			text-uppercase"
+			   href="{{ ingredient.get_absolute_url }}"> {{ ingredient.title }} </a>
+		</div>
 	{% endfor %}
 {% endblock %}
