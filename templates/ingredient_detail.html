@@ -3,16 +3,24 @@
 {% block title %}{{ ingredient.title }}{% endblock %}
 
 {% block body %}
-	<h1>{{ ingredient.title }}</h1>
+<div class="title shadow-lg p-3 mb-5 bg-body rounded text-uppercase fs-3" style="text-align: center">
+	{{ ingredient.title }}
+</div>
+
+<div class="text-sm-center text-uppercase fs-5 fw-lighter">
 	<p>
 		{% for recipe in ingredient.recipe.all %}
-			<a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a>
+			<a class="text-decoration-none" href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a>
 		{% endfor %}
 	</p>
+</div>
+<div class="p-3 mb-5 text-center text-capitalize">
 
-	<p class="description">
-		<h3>Description</h3>
+	<h4> Description for {{ ingredient.title }} </h4>
+	<p class="">
 		{{ ingredient.description | linebreaks }}
 	</p>
+</div>
+
 
 {% endblock %}

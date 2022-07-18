@@ -3,14 +3,16 @@
 {% block title %}{{ tags.title }}{% endblock %}
 
 {% block body %}
-<h1>{{ tags.title }} is used in further recipes:</h1>
-<p>
-		{% for recipe in tags.recipe.all %}
+<div class="title shadow p-4 mb-5 bg-body rounded text-center text-capitalize fs-3">
+	{{ tags.title }} is used in further recipes
+</div>
+
+{% for recipe in tags.recipe.all %}
+	<div class="list-group">
 		<ul>
-			<li><a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a> </li>
+			<a class="list-group-item list-group-item-action not-active shadow-sm p-3 mb-1 rounded text-center"
+			   href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a>
 		</ul>
-
+	</div>
 		{% endfor %}
-</p>
-
 {% endblock %}
